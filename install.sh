@@ -24,7 +24,7 @@ git clone git://github.com/cmungall/blipkit.git
 git clone http://github.com/cmungall/obo-scripts
 
 # rather than using http://owltools.googlecode.com/files/, chris mentioned to lastest jenkins build instead:
-curl http://build.berkeleybop.org/job/owltools/lastSuccessfulBuild/artifact/OWLTools/OWLTools-Runner/bin/owltools-runner-all.jar >> owltools-runner-all.jar
+curl http://build.berkeleybop.org/job/owltools/lastSuccessfulBuild/artifact/OWLTools/OWLTools-Runner/bin/owltools-runner-all.jar > owltools-runner-all.jar
 
 # install and configure galaxy
 hg clone https://bitbucket.org/cmungall/galaxy-obo
