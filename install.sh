@@ -31,6 +31,7 @@ hg clone https://bitbucket.org/cmungall/galaxy-obo
 
 GALAXY_DIR=galaxy-obo
 GALAXY_INI_FILE=$GALAXY_DIR/universe_wsgi.ini
+cp $GALAXY_INI_FILE.sample $GALAXY_INI_FILE
 echo host = 0.0.0.0 >> $GALAXY_INI_FILE
 echo tool_config_file = tool_conf_gff.xml,tool_conf_obo.xml >> $GALAXY_INI_FILE
 # point to specific tool config in universe_wsgi.ini
