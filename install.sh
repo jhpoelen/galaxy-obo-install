@@ -1,20 +1,22 @@
 #!/bin/bash
 # steps to get galaxy-obo up and running on aws Ubuntu 12.04
 
+APT_OPTS=-y
+
 # prereqs
-sudo apt-get install mercurial git
-sudo apt-get install openjdk-6-jre-headless
-sudo apt-get install swi-prolog
+sudo apt-get $APT_OPTS install mercurial git
+sudo apt-get $APT_OPTS install openjdk-6-jre-headless
+sudo apt-get $APT_OPTS install swi-prolog
 
 # termfinder needs g++ and other build tools
-sudo apt-get install build-essential
+sudo apt-get $APT_OPTS install build-essential
 
 # perl dbi / perl DBD::mysql 
-sudo apt-get install libdbi-perl libdbd-mysql-perl
+sudo apt-get $APT_OPTS install libdbi-perl libdbd-mysql-perl
 
 # GO:TermFinder needs dependencies GraphViz and GD graphics libraries 
-sudo apt-get install libgraphviz-perl
-sudo apt-get install libgd-gd2-perl
+sudo apt-get $APT_OPTS install libgraphviz-perl
+sudo apt-get $APT_OPTS install libgd-gd2-perl
 
 git clone git://github.com/cmungall/blipkit.git
 # note that: check install by running blipkit/bin/blip produced: ERROR: source_sink `library(odbc)' does not exist
