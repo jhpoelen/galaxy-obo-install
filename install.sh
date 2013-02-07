@@ -9,6 +9,7 @@ sudo apt-get $APT_OPTS install mercurial git
 sudo apt-get $APT_OPTS install openjdk-6-jre-headless
 sudo apt-get $APT_OPTS install python-dev
 sudo apt-get $APT_OPTS install swi-prolog
+sudo apt-get $APT_OPTS install make
 
 # monit - process monitoring 
 sudo apt-get $APT_OPTS install monit
