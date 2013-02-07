@@ -40,7 +40,7 @@ Installing a new tool.
 
 Rather than using Galaxy Toolshed as a source repository, I'd recommend uploading tools into toolshed from separate bitbucket mercurial repositories. In toolshed > select repository > select upload files.  Then enter url inf like hgs://bitbucket.org/jhpoelen/obo/src to import the head/tip of the bitbucket repo. Cloning repos from toolshed led to problems like:
 
-	:::bash
+```bash
 ubuntu@ip-10-254-13-230:~/tmp/obotest$ vi README 
 ubuntu@ip-10-254-13-230:~/tmp/obotest$ hg commit -m 'bla' -u jorrit
 ubuntu@ip-10-254-13-230:~/tmp/obotest$ hg push
@@ -50,6 +50,6 @@ http authorization required
 realm: 
 user: jorrit
 password: 
- 
+```
 
 
