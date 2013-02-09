@@ -3,9 +3,9 @@ galaxy-obo-install
 
 These are install (UNDER DEVELOPMENT) instructions for running Galaxy (Tool Shed)  with go/obo/owl tools.
 
-Local instance of Galaxy
+##installing local instance of Galaxy
 
-Steps
+steps
 
 0. create dir in which you'd like to install galaxy and its dependencies
 
@@ -21,10 +21,10 @@ Steps
 
 6. (TODO install GO/Obo/Owl tool repositories from tool repositories)
 
-Local instance of Galaxy Tool Shed
+##installing local instance of Galaxy Tool Shed
 Note: Tools Shed host Galaxy tools, just like an app store hosts apps. Tool dev work.
 
-Steps
+steps
 
 0. create dir for toolshed
 
@@ -36,9 +36,9 @@ Steps
 
 4. start toolshed using (sh run_community.sh)
 
-Installing a new tool.
+##installing a new tool into galaxy using tool shed
 
-Rather than using Galaxy Toolshed as a source repository, I'd recommend uploading tools into toolshed from separate bitbucket mercurial repositories. In toolshed > select repository > select upload files.  Then enter url inf like hgs://bitbucket.org/jhpoelen/obo/src to import the head/tip of the bitbucket repo. Cloning repos from toolshed led to problems like below. Not quite sure why this happens.
+Rather than using Galaxy Toolshed as a source repository, I'd recommend uploading tools into toolshed from separate bitbucket mercurial repositories. In toolshed > select repository > select upload files.  Then enter url like [hgs://bitbucket.org/jhpoelen/obo/src] to import the head/tip of the bitbucket repo. Cloning repos from toolshed led to problems like below. Not quite sure why this happens.
 
 ```bash
 ubuntu@ip-10-254-13-230:~/tmp/obotest$ vi README 
@@ -53,4 +53,9 @@ password:
 abort: authorization failed
 ```
 
+Test valid installation of the tool by running 
+```bash
+galaxy-dist$sh run_functional_tests -installed
+```
+This starts a separate test instance of Galaxy and runs the tests of the (manually) installed tools from tool shed.
 
