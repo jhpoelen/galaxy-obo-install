@@ -55,7 +55,7 @@ abort: authorization failed
 
 Test valid installation of the tool by running 
 ```bash
-galaxy-dist$sh run_functional_tests -installed
+galaxy-dist$ sh run_functional_tests.sh -installed
 ```
 This starts a separate test instance of Galaxy and runs the tests of the (manually) installed tools from tool shed.
 
