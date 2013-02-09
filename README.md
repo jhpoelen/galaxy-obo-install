@@ -36,7 +36,7 @@ steps
 
 4. start toolshed using (sh run_community.sh)
 
-##installing a new tool into galaxy using tool shed
+##installing a new tool into galaxy tool shed
 
 Rather than using Galaxy Toolshed as a source repository, I'd recommend uploading tools into toolshed from separate bitbucket mercurial repositories. In toolshed > select repository > select upload files.  Then enter url like [hgs://bitbucket.org/jhpoelen/obo/src] to import the head/tip of the bitbucket repo. Cloning repos from toolshed led to problems like below. Not quite sure why this happens.
 
@@ -53,9 +53,38 @@ password:
 abort: authorization failed
 ```
 
-Test valid installation of the tool by running 
+##installing a tool into galaxy from galaxy tool shed
+
+steps
+
+1. config tool_config_file in universe_wsgi.ini
+```bash
+...
+tool_config_file = tool_conf.xml,shed_tool_conf.xml
+...
+```
+with shed_tool_conf.xml containing tool shed urls you'd like to include
+```bash
+
+2. configure dependency dir for storing tool dependencies in universe_wsgi.ini. This is binaries of tools (e.g. obo-scripts) are installed.
+```
+...
+tool_dependency_dir = ../galaxy_tool_deps
+...
+```
+
+3. ensure that all tool sheds you'd like to use are in tool_sheds_conf.xml 
+
+4. (re-)start galaxy 
+
+5. ensuring that you have admin privileges, install using web path: admin > tool sheds > search and browse tool sheds > etc 
+
+6. test valid installation of the tool by running 
 ```bash
 galaxy-dist$ sh run_functional_tests.sh -installed
 ```
 This starts a separate test instance of Galaxy and runs the tests of the (manually) installed tools from tool shed.
+
+## Example 
+In the official test tool shed at Penn State (http://testtoolshed.g2.bx.psu.edu), there's a tool called obotools. This contains a fetch-remote-ontology wrapper. This tools installs a dependency (obo-scripts) and as the tool is executed, the dependency is added to the path, so that the perl scripts can be executed ok. 
 
