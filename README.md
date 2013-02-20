@@ -87,3 +87,13 @@ This starts a separate test instance of Galaxy and runs the tests of the (manual
 ## Example 
 In the official test tool shed at Penn State (http://testtoolshed.g2.bx.psu.edu), there's a tool called obotools. This contains a fetch-remote-ontology wrapper. This tools installs a dependency (obo-scripts) and as the tool is executed, the dependency is added to the path, so that the perl scripts can be executed ok. 
 
+## Known issues 
+
+### KeyError['tools'] on importing workflows from tool shed
+At time of writing (Feb 19, 2013), galaxy-dist has a bug that prevents workflows from importing. This bug has been fixed by Dave.  Please follow instructions below to get access to bug fix.  I've (jorrit) have confirmed that bug has been fixed.
+```
+From http://dev.list.galaxyproject.org/KeyError-tools-on-importing-workflow-from-locally-installed-repository-tp4658548.html :
+```
+$ hg pull -b stable https://bitbucket.org/galaxy/galaxy-central/
+$ hg update stable
+```
