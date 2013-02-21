@@ -30,11 +30,11 @@ java -Xmx2G -jar bin/ontologizer.jar --go input/gene_ontology_ext.obo --associat
 
 mv view-* table-* output
 
-# this should produce a view file [output/view-studyGDS2821-Parent-Child-Union-None.dot] table file [output/table-studyGDS2821-Parent-Child-Union-None.txt] with first three lines something like:
+# this should produce a view file [output/view-studyGDS2821-Parent-Child-Union-Westfall-Young-Single-Step.dot] table file [output/table-studyGDS2821-Parent-Child-Union-Westfall-Young-Single-Step.txt] with first three lines something like:
 # ID      Pop.total       Pop.term        Study.total     Study.term      Pop.family      Study.family    nparents
         is.trivial      p       p.adjusted      p.min
 # GO:0000000      20639   15956   6040    4991    0       0       0       true    1.0     1.0     1.0
 # GO:0070404      20639   2       6040    1       2525    862     2       false   0.5663168630650388      0.5663168630650
 
 # dot file result can be used for visualization with graphviz
-dot -Tpng output/view-studyGDS2821-Parent-Child-Union-None.dot -ooutput/view-studyGDS2821-Parent-Child-Union-None.png
+dot -Tpng output/view-studyGDS2821-Parent-Child-Union-Westfall-Young-Single-Step.dot -ooutput/view-studyGDS2821-Parent-Child-Union-Westfall-Young-Single-Step.png
