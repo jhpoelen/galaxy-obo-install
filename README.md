@@ -124,7 +124,9 @@ Also does not work (same error):
    <environment_variable name="ONTOLOGIZER" action="set_to">$INSTALL_DIR</environment_variable>
 </action>
 [...]
-```                
+``` 
+
+This most likely fails, because of http://wiki.galaxyproject.org/Future/Job%20Failure%20When%20stderr , so this is probably fixable.               
 
 ### KeyError['tools'] on importing workflows from tool shed
 At time of writing (Feb 19, 2013), galaxy-dist has a bug that prevents workflows from importing. This bug has been fixed by Dave.  Please follow instructions below to get access to bug fix.  I've (jorrit) have confirmed that bug has been fixed.
