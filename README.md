@@ -89,6 +89,43 @@ In the official test tool shed at Penn State (http://testtoolshed.g2.bx.psu.edu)
 
 ## Known issues 
 
+### Install failures using wget and/or curl to download tool dependencies
+After many trial and error, I found that using wget and/or curl to download dependencies causes strange errors in subsequent install steps. Using download_by_url action worked much better.
+
+Observed errors looked like: ```Fatal error: local() encountered an error (return code 1) while executing 'echo 'ONTOLOG...```. 
+
+From '''tool_depedencies.xml'''.
+
+Works:
+```
+[...]
+<action type="download_by_url">http://compbio.charite.de/contao/index.php/cmdlineOntologizer.html?file=tl_files/ontologizer/cmdline/Ontologizer.jar</action>
+<action type="set_environment">
+   <environment_variable name="ONTOLOGIZER" action="set_to">$INSTALL_DIR</environment_variable>
+</action>
+[...]
+```
+
+Does not work:
+```
+[...]
+<action type="download_by_url">http://compbio.charite.de/contao/index.php/cmdlineOntologizer.html?file=tl_files/ontologizer/cmdline/Ontologizer.jar</action>
+<action type="set_environment">
+   <environment_variable name="ONTOLOGIZER" action="set_to">$INSTALL_DIR</environment_variable>
+</action>
+[...]
+```
+
+Also does not work (same error):
+```
+[...]
+<action type="shell_command">curl --silent --show-error --output $INSTALL_DIR/ontologizer.jar http://compbio.charite.de/contao/index.php/cmdlineOntologizer.html?file=tl_files/ontologizer/cmdline/Ontologizer.jar</action>
+<action type="set_environment">
+   <environment_variable name="ONTOLOGIZER" action="set_to">$INSTALL_DIR</environment_variable>
+</action>
+[...]
+```                
+
 ### KeyError['tools'] on importing workflows from tool shed
 At time of writing (Feb 19, 2013), galaxy-dist has a bug that prevents workflows from importing. This bug has been fixed by Dave.  Please follow instructions below to get access to bug fix.  I've (jorrit) have confirmed that bug has been fixed.
 From http://dev.list.galaxyproject.org/KeyError-tools-on-importing-workflow-from-locally-installed-repository-tp4658548.html :
