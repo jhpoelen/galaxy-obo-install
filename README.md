@@ -33,7 +33,7 @@ ubuntu@ip-10-254-13-230:~/galaxy-dist$ diff universe_wsgi.ini universe_wsgi.ini.
 ---
 > 
 472c471
-< admin_users = jhpoelen@xs4all.nl
+< admin_users = [my email address]
 ---
 > #admin_users = None
 ubuntu@ip-10-254-13-230:~/galaxy-dist$ 
