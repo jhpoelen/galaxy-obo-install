@@ -24,33 +24,16 @@ sudo apt-get $APT_OPTS install libdbi-perl libdbd-mysql-perl
 sudo apt-get $APT_OPTS install libgraphviz-perl
 sudo apt-get $APT_OPTS install libgd-gd2-perl
 
-git clone git://github.com/cmungall/blipkit.git
-# note that: check install by running blipkit/bin/blip produced: ERROR: source_sink `library(odbc)' does not exist
- 
-git clone http://github.com/cmungall/obo-scripts
-
-# rather than using http://owltools.googlecode.com/files/, chris mentioned to lastest jenkins build instead:
-curl http://build.berkeleybop.org/job/owltools/lastSuccessfulBuild/artifact/OWLTools/OWLTools-Runner/bin/owltools-runner-all.jar > owltools-runner-all.jar
-
 hg clone https://bitbucket.org/galaxy/galaxy-dist
+GALAXY_DIR=./galaxy-dist
 
-# custom dist goes away
-hg clone https://bitbucket.org/cmungall/galaxy-obo
+cd $GALAXY_DIR
+#apply patch for fixing http://dev.list.galaxyproject.org/KeyError-tools-on-importing-workflow-from-locally-installed-repository-td4658548.html
+hg pull -b stable https://bitbucket.org/galaxy/galaxy-central/
+hg update stable
 
-GALAXY_DIR=./galaxy-obo
-
-# start galaxy-obo
+# first start galaxy to create config files 
 sh $GALAXY_DIR/run.sh --reload
-
-# OBO release manager needs java - assuming java 6 is ok
-# curl http://owltools.googlecode.com/files/OBOReleaseManager_unix_0.4.0-20121220.sh > OBOReleaseManager_unix_0.4.0-20121220.sh
-
-# install xserver
-# export DEBIAN_FRONTEND=noninteractive
-# sudo -E apt-get update
-# sudo -E apt-get install -y ubuntu-desktop
-# note that for some reason previous three lines have to be executed to run installer headless (e.g. -c ); this seems counter intuitive to have to install xserver to run something headless. 
-# sh OBOReleaseManager_unix_0.4.0-20121220.sh -c
 
 
 

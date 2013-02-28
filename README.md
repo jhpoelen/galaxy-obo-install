@@ -13,13 +13,35 @@ steps
 
 2. stop galaxy
 
-3. edit galaxy configuration (e.g. GALAXY_DIR/universe_wsgi.ini) for network/ database settings
+3. edit galaxy configuration (e.g. GALAXY_DIR/universe_wsgi.ini) for network, tool dependencies dir, and admin user settings
 
-4. restart galaxy ```sh GALAXY_DIR/run.sh```
+here's the diff of the template ```.ini.sample``` and ```.ini``` 
+```
+ubuntu@ip-10-254-13-230:~/galaxy-dist$ diff universe_wsgi.ini universe_wsgi.ini.sample 
+29c29
+< port = 7474
+---
+> #port = 8080
+35c35
+< host = 0.0.0.0
+---
+> 
+135d134
+< tool_config_file = tool_conf.xml,shed_tool_conf.xml
+145c144
+< tool_dependency_dir = ../galaxy_tool_deps
+---
+> 
+472c471
+< admin_users = jhpoelen@xs4all.nl
+---
+> #admin_users = None
+ubuntu@ip-10-254-13-230:~/galaxy-dist$ 
+```
 
-5. (TODO start galaxy as service + process monitoring like monit to ensure restart)
+4. restart galaxy ```sh GALAXY_DIR/run.sh --reload```
 
-6. see below for instructions on how to install GO/Obo/Owl tool repositories from tool sheds
+5. see below for instructions on how to install GO/Obo/Owl tool repositories from tool sheds
 
 ##installing local instance of Galaxy Tool Shed
 Note: Tools Shed host Galaxy tools, just like an app store hosts apps. Tool dev work.
