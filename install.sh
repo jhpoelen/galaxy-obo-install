@@ -33,7 +33,7 @@ hg pull -b stable https://bitbucket.org/galaxy/galaxy-central/
 hg update stable
 
 # first start galaxy to create config files 
-sh $GALAXY_DIR/run.sh --reload
+sh run.sh --reload
 
 
 
