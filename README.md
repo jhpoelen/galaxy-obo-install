@@ -81,20 +81,7 @@ bitbucket = ssh://hg@bitbucket.org/[my bitbucket username]/[my bitbucket repo na
 ### manually upload files using toolshed web interface
 If you like clicking on buttons, you can use the toolshed web interface upload individual files to toolshed repo or add tar.gz / zip archives. Also, you can add the contents of an existing hg repository using the following trick. In toolshed > select repository > select upload files.  Then enter url like ```hgs://bitbucket.org/jhpoelen/obo/src``` to import the head/tip of the bitbucket repo. 
 
-```bash
-ubuntu@ip-10-254-13-230:~/tmp/obotest$ vi README 
-ubuntu@ip-10-254-13-230:~/tmp/obotest$ hg commit -m 'bla' -u jorrit
-ubuntu@ip-10-254-13-230:~/tmp/obotest$ hg push
-pushing to http://jorrit@testtoolshed.g2.bx.psu.edu/repos/jorrit/obotest
-searching for changes
-http authorization required
-realm: 
-user: jorrit
-password: 
-abort: authorization failed
-```
-
-##installing a tool into galaxy from galaxy tool shed
+##enabling galaxy instance to install tools from  (remote) galaxy tool shed
 
 steps
 
@@ -199,6 +186,7 @@ It seems that the remote repository is updated, but the commandline returns a co
 
 Trying on a private test toolshed, I see the following in the community-webapp.log:
 
+```
 173.11.123.170 - - [13/Mar/2013:22:08:19 +0000] "GET /repos/testjorrit/testrepo?cmd=capabilities HTTP/1.1" 200 130 "-" "mercurial/proto-1.0"
 173.11.123.170 - - [13/Mar/2013:22:08:19 +0000] "GET /repos/testjorrit/testrepo?cmd=batch HTTP/1.1" 200 43 "-" "mercurial/proto-1.0"
 173.11.123.170 - - [13/Mar/2013:22:08:19 +0000] "GET /repos/testjorrit/testrepo?cmd=branchmap HTTP/1.1" 200 48 "-" "mercurial/proto-1.0"
@@ -207,6 +195,7 @@ Trying on a private test toolshed, I see the following in the community-webapp.l
 173.11.123.170 - testjorrit [13/Mar/2013:22:08:23 +0000] "POST /repos/testjorrit/testrepo?cmd=unbundle HTTP/1.1" 200 - "-" "mercurial/proto-1.0"
 173.11.123.170 - - [13/Mar/2013:22:08:24 +0000] "GET /repos/testjorrit/testrepo?cmd=listkeys HTTP/1.1" 200 58 "-" "mercurial/proto-1.0"
 173.11.123.170 - - [13/Mar/2013:22:08:24 +0000] "POST /repos/testjorrit/testrepo?cmd=pushkey HTTP/1.1" 401 - "-" "mercurial/proto-1.0"
+```
 
 Which seems to indicate that most http get/post succeed, but the last one, pushkey, fails to authenticate.
 
