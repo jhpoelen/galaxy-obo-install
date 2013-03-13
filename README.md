@@ -159,3 +159,20 @@ $ hg pull -b stable https://bitbucket.org/galaxy/galaxy-central/
 $ hg update stable
 [...]
 ```
+
+### Hg push to remote tool shed fails with abort: authorization failed 
+Even through http://wiki.galaxyproject.org/ToolShedRepositoryFeatures#Pushing_changes_to_a_repository_using_hg_from_the_command_line shows a working example, I have not been able to push changes to a remote toolshed successfull.  Here's an example of an unsuccessful attempt:.
+
+```bash
+ubuntu@ip-10-254-13-230:~/tmp/obotest$ vi README
+ubuntu@ip-10-254-13-230:~/tmp/obotest$ hg commit -m 'bla' -u jorrit
+ubuntu@ip-10-254-13-230:~/tmp/obotest$ hg push
+pushing to http://jorrit@testtoolshed.g2.bx.psu.edu/repos/jorrit/obotest
+searching for changes
+http authorization required
+realm:
+user: jorrit
+password:
+abort: authorization failed
+```
+
