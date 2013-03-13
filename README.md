@@ -60,7 +60,7 @@ steps
 
 ##installing a new tool into galaxy tool shed
 
-Rather than using Galaxy Toolshed as a source repository, I'd recommend uploading tools into toolshed from separate bitbucket mercurial repositories. In toolshed > select repository > select upload files.  Then enter url like ```hgs://bitbucket.org/jhpoelen/obo/src``` to import the head/tip of the bitbucket repo. Cloning repos from toolshed led to problems like below. Not quite sure why this happens.
+Rather than using Galaxy Toolshed as a source repository, I'd recommend uploading tools into toolshed from separate bitbucket mercurial repositories. In toolshed > select repository > select upload files.  Then enter url like ```hgs://bitbucket.org/jhpoelen/obo/src``` to import the head/tip of the bitbucket repo. Cloning repos from toolshed led to problems like below, even through http://wiki.galaxyproject.org/ToolShedRepositoryFeatures#Pushing_changes_to_a_repository_using_hg_from_the_command_line shows a working example. Not quite sure why this happens.
 
 ```bash
 ubuntu@ip-10-254-13-230:~/tmp/obotest$ vi README 
