@@ -58,9 +58,28 @@ steps
 
 4. start toolshed using ```sh run_community.sh```
 
-##installing a new tool into galaxy tool shed
+##installing/ updating a new tool into galaxy tool shed
 
-Rather than using Galaxy Toolshed as a source repository, I'd recommend uploading tools into toolshed from separate bitbucket mercurial repositories. In toolshed > select repository > select upload files.  Then enter url like ```hgs://bitbucket.org/jhpoelen/obo/src``` to import the head/tip of the bitbucket repo. Cloning repos from toolshed led to problems like below, even through http://wiki.galaxyproject.org/ToolShedRepositoryFeatures#Pushing_changes_to_a_repository_using_hg_from_the_command_line shows a working example. Not quite sure why this happens.
+### (recommended approach) use hg commandline
+Rather than using Galaxy Toolshed as a single source repository, I'd recommend uploading tools into toolshed from separate bitbucket mercurial repositories. One way to do this is:
+- create tool shed repository, add single readme 
+- locally clone repository using something like ```hg clone http://myusername@testtoolshed.g2.bx.psu.edu/repos/myusername/myrepositoryname
+- on bitbucket, or other hg repository provider, create an empty repository
+- locally, push recently cloned repository to empty bitbucket repo using something like ```hg push ssh://hg@bitbucket.org/mybitbucketusername/myreponame```
+- in local hg repo, edit [repo name]/.hg/hgrc, and add bitbucket path.  Result should look something like:
+```
+#in [repo name]/.hg/hgrc
+[paths]
+default = http://[my toolshed username]@testtoolshed.g2.bx.psu.edu/repos/[my toolshed username]/[toolshed repo name]
+bitbucket = ssh://hg@bitbucket.org/[my bitbucket username]/[my bitbucket repo name]
+```
+- now, you can push changes to toolshed (! this publishes your changes for others to use) by ```hg push```, to also push to bitbucket, ```hg push bitbucket``` or do both by executing ```hg push *```
+
+*Note* For some reason, pushing changes to a toolshed using hg commandline shows a authentication error like ```abort: authorization failed```. For more information, see known issues below. 
+
+
+### manually upload files using toolshed web interface
+If you like clicking on buttons, you can use the toolshed web interface upload individual files to toolshed repo or add tar.gz / zip archives. Also, you can add the contents of an existing hg repository using the following trick. In toolshed > select repository > select upload files.  Then enter url like ```hgs://bitbucket.org/jhpoelen/obo/src``` to import the head/tip of the bitbucket repo. 
 
 ```bash
 ubuntu@ip-10-254-13-230:~/tmp/obotest$ vi README 
