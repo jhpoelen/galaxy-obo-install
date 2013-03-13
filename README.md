@@ -176,3 +176,20 @@ password:
 abort: authorization failed
 ```
 
+It seems that the remote repository is updated, but the commandline returns a confusing abort message.
+
+Trying on a private test toolshed, I see the following in the community-webapp.log:
+
+173.11.123.170 - - [13/Mar/2013:22:08:19 +0000] "GET /repos/testjorrit/testrepo?cmd=capabilities HTTP/1.1" 200 130 "-" "mercurial/proto-1.0"
+173.11.123.170 - - [13/Mar/2013:22:08:19 +0000] "GET /repos/testjorrit/testrepo?cmd=batch HTTP/1.1" 200 43 "-" "mercurial/proto-1.0"
+173.11.123.170 - - [13/Mar/2013:22:08:19 +0000] "GET /repos/testjorrit/testrepo?cmd=branchmap HTTP/1.1" 200 48 "-" "mercurial/proto-1.0"
+173.11.123.170 - - [13/Mar/2013:22:08:19 +0000] "GET /repos/testjorrit/testrepo?cmd=branchmap HTTP/1.1" 200 48 "-" "mercurial/proto-1.0"
+173.11.123.170 - - [13/Mar/2013:22:08:19 +0000] "GET /repos/testjorrit/testrepo?cmd=listkeys HTTP/1.1" 200 - "-" "mercurial/proto-1.0"
+173.11.123.170 - testjorrit [13/Mar/2013:22:08:23 +0000] "POST /repos/testjorrit/testrepo?cmd=unbundle HTTP/1.1" 200 - "-" "mercurial/proto-1.0"
+173.11.123.170 - - [13/Mar/2013:22:08:24 +0000] "GET /repos/testjorrit/testrepo?cmd=listkeys HTTP/1.1" 200 58 "-" "mercurial/proto-1.0"
+173.11.123.170 - - [13/Mar/2013:22:08:24 +0000] "POST /repos/testjorrit/testrepo?cmd=pushkey HTTP/1.1" 401 - "-" "mercurial/proto-1.0"
+
+Which seems to indicate that most http get/post succeed, but the last one, pushkey, fails to authenticate.
+
+I am wondering whether I am the only one seeing this confusing behaviour and what I can do to stop this from happening.
+
