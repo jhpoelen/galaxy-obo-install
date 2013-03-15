@@ -201,3 +201,13 @@ Which seems to indicate that most http get/post succeed, but the last one, pushk
 
 I am wondering whether I am the only one seeing this confusing behaviour and what I can do to stop this from happening.
 
+Issue got fixed by Dave B.
+
+```
+Jorrit,
+
+Thank you for reporting this issue, I've committed a fix in the default branch at 9077:62bd6fe0e9aa, and it will be updated in stable at our next release.
+
+  --Dave B.
+```
+
