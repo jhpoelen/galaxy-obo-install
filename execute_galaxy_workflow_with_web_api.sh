@@ -5,10 +5,7 @@
 #
 # The API seems to be documented in python code which lives here:
 #	https://bitbucket.org/galaxy/galaxy-dist/src/9fd7fe0c5712/lib/galaxy/webapps/galaxy/api?at=default
-
-
-API_KEY=f9fc30fe2bca93c4c6da49163ec33b3d
-GALAXY_API_ENDPOINT=http://galaxy:7474/api/
+. galaxy_api.rc
 
 curl -X POST -H Accept:application/json -H Content-Type:application/json -d '{ "history":"", "workflow_id":"0a248a1f62a0cc04", "ds_map":"" }' -v $GALAXY_API_ENDPOINT/workflows?key=$API_KEY
 

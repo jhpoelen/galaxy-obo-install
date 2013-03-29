@@ -1,0 +1,2 @@
+export API_KEY=f9fc30fe2bca93c4c6da49163ec33b3d
+export GALAXY_API_ENDPOINT=http://galaxy:7474/api
